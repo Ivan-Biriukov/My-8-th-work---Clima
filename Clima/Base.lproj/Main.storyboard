@@ -39,12 +39,12 @@
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="" image="location.north" catalog="system"/>
                                                     </button>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="London" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KOq-WS-aaJ">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="London" textAlignment="center" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="KOq-WS-aaJ">
                                                         <rect key="frame" x="55" y="0.0" width="219" height="40"/>
                                                         <color key="tintColor" name="CustomColors"/>
                                                         <color key="textColor" name="CustomColors"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="webSearch" returnKeyType="search"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rJS-uu-Z4W">
                                                         <rect key="frame" x="289" y="0.0" width="40" height="40"/>
@@ -55,6 +55,9 @@
                                                         <color key="tintColor" name="CustomColors"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="" image="magnifyingglass" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="searcxhPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pdt-vp-VMH"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -176,6 +179,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FkF-z2-eju" secondAttribute="bottom" id="x4e-zy-z3U"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchTextField" destination="KOq-WS-aaJ" id="gLu-Ot-CMp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
