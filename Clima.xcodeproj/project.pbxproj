@@ -13,6 +13,7 @@
 		574DF5AB298AD74500F2D993 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 574DF5A9298AD74500F2D993 /* Main.storyboard */; };
 		574DF5AD298AD74800F2D993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 574DF5AC298AD74800F2D993 /* Assets.xcassets */; };
 		574DF5B0298AD74800F2D993 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 574DF5AE298AD74800F2D993 /* LaunchScreen.storyboard */; };
+		57A62580298C22F600363EF4 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6257F298C22F600363EF4 /* WeatherManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		574DF5AC298AD74800F2D993 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		574DF5AF298AD74800F2D993 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		574DF5B1298AD74800F2D993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57A6257F298C22F600363EF4 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		574DF5A2298AD74500F2D993 /* Clima */ = {
 			isa = PBXGroup;
 			children = (
+				57A6257E298C22CE00363EF4 /* Model */,
 				574DF5A3298AD74500F2D993 /* AppDelegate.swift */,
 				574DF5A5298AD74500F2D993 /* SceneDelegate.swift */,
 				574DF5A7298AD74500F2D993 /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				574DF5B1298AD74800F2D993 /* Info.plist */,
 			);
 			path = Clima;
+			sourceTree = "<group>";
+		};
+		57A6257E298C22CE00363EF4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				57A6257F298C22F600363EF4 /* WeatherManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +151,7 @@
 			files = (
 				574DF5A8298AD74500F2D993 /* ViewController.swift in Sources */,
 				574DF5A4298AD74500F2D993 /* AppDelegate.swift in Sources */,
+				57A62580298C22F600363EF4 /* WeatherManager.swift in Sources */,
 				574DF5A6298AD74500F2D993 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

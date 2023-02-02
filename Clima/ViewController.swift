@@ -10,6 +10,8 @@ import UIKit
 class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var searchTextField: UITextField!
     
+    var weatherManager = WeatherManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Our TextField report in our class her status (User Interaction)
@@ -31,7 +33,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // This method do itself when user done with TextField
     func textFieldDidEndEditing(_ textField: UITextField) {
-        let text = searchTextField.text   // save user written text with a city name
+        if let city = searchTextField.text{  // save user written text with a city name
+            weatherManager.fetchWeather(cityName: city)  // its Optional, so when its not nil then we will use it
+        }
         searchTextField.text = ""
     }
     
@@ -49,6 +53,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    
+
 }
+
 
