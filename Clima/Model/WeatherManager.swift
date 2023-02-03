@@ -45,7 +45,15 @@ struct WeatherManager {
         let decoder = JSONDecoder() // created an objest from JSONDecoder() Apply Class to translate incoming data
         do { // in do block {} we are rapping every method that throw an error (every method with keywoard try)
             let decodedData =  try decoder.decode(WeatherData.self, from: weatherData) // Here we are decoding (transleting) our data. 1st parametr - Data Type, second - what data. We should mark this method with keywoard try, becouse he can trhow an error.
-            print(decodedData.weather[0].description)
+            
+            let id = decodedData.weather[0].id // saved Id property to match its for weather picture changes
+            let temp = decodedData.main.temp // Saved Temp value to transfer it
+            let name = decodedData.name // Saved Name of city property to transfer it
+            let wind = decodedData.wind.speed // Saved wind speed propertys value
+            
+            let weather = WeatherModel(conditionId: id, cityName: name, temperature: temp, windSpeed: wind) // Created an object from Weather model which will save all transleted propertyes from API request
+            
+            weather.conditionName // call to computed property thats in uotput gives us name of weahter picture to pass it for IBOutlet
         } catch { // and When he throws an error we can catch that error in block catch
                 print(error)
         }
