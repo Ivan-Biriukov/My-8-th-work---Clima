@@ -13,6 +13,7 @@
 		574DF5AB298AD74500F2D993 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 574DF5A9298AD74500F2D993 /* Main.storyboard */; };
 		574DF5AD298AD74800F2D993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 574DF5AC298AD74800F2D993 /* Assets.xcassets */; };
 		574DF5B0298AD74800F2D993 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 574DF5AE298AD74800F2D993 /* LaunchScreen.storyboard */; };
+		5781BD3D298D37D000CEDE23 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5781BD3C298D37D000CEDE23 /* WeatherData.swift */; };
 		57A62580298C22F600363EF4 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6257F298C22F600363EF4 /* WeatherManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		574DF5AC298AD74800F2D993 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		574DF5AF298AD74800F2D993 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		574DF5B1298AD74800F2D993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5781BD3C298D37D000CEDE23 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		57A6257F298C22F600363EF4 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				57A6257F298C22F600363EF4 /* WeatherManager.swift */,
+				5781BD3C298D37D000CEDE23 /* WeatherData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				574DF5A8298AD74500F2D993 /* ViewController.swift in Sources */,
+				5781BD3D298D37D000CEDE23 /* WeatherData.swift in Sources */,
 				574DF5A4298AD74500F2D993 /* AppDelegate.swift in Sources */,
 				57A62580298C22F600363EF4 /* WeatherManager.swift in Sources */,
 				574DF5A6298AD74500F2D993 /* SceneDelegate.swift in Sources */,
