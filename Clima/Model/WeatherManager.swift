@@ -7,8 +7,13 @@
 
 import Foundation
 
+protocol WeatherManagerDelegate {  // made an protocol to make WeahetManager functional Anonimety so every View (throught self.delegate setting) can make trigger method to update the weather
+    func didUpdateWeather(weather: WeatherModel)
+}
+
 struct WeatherManager {
     let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=3031c9730cede0714743e59a76763c7e&units=metric"
+    var delegate: WeatherManagerDelegate? // made an Handler which can be trigeret by any Class who got it -> so it will run weahterupdate to ViewController
     
     func fetchWeather(cityName: String){ // method which adapts our URL adress with user input in textField
         let urlString = "\(weatherURL)&q=\(cityName)"
@@ -31,7 +36,9 @@ struct WeatherManager {
                 }
                 
                 if let safeData = data{ // unwraping incoming Data? becouse its optional
-                    self.parseJSON(weatherData: safeData) // Call method thats translate to Struck incoming JSON data from openweathermap. set self. before name om method in Closure - its rule
+                    if let weather = self.parseJSON(weatherData: safeData) { // Call method thats translate to Struck incoming JSON data from openweathermap. set self. before name om method in Closure - its rule
+                        self.delegate?.didUpdateWeather(weather: weather) // set up method to update wheater Data
+                    }
                 }
 
             }
@@ -41,7 +48,7 @@ struct WeatherManager {
         }
     }
     
-    func parseJSON(weatherData: Data) { // Created method thats will translate JSON into struck data type, as input we set data whic we got from session.dataTask
+    func parseJSON(weatherData: Data) -> WeatherModel? { // Created method thats will translate JSON into struck data type, as input we set data whic we got from session.dataTask, and return an WeahetModel Optional Object
         let decoder = JSONDecoder() // created an objest from JSONDecoder() Apply Class to translate incoming data
         do { // in do block {} we are rapping every method that throw an error (every method with keywoard try)
             let decodedData =  try decoder.decode(WeatherData.self, from: weatherData) // Here we are decoding (transleting) our data. 1st parametr - Data Type, second - what data. We should mark this method with keywoard try, becouse he can trhow an error.
@@ -53,9 +60,13 @@ struct WeatherManager {
             
             let weather = WeatherModel(conditionId: id, cityName: name, temperature: temp, windSpeed: wind) // Created an object from Weather model which will save all transleted propertyes from API request
             
+            return weather // Becouse we got method with output - we need to return
+            
             weather.conditionName // call to computed property thats in uotput gives us name of weahter picture to pass it for IBOutlet
+            
         } catch { // and When he throws an error we can catch that error in block catch
                 print(error)
+            return nil // becouse we got method with output and even when we got error we need something to return
         }
     }
     

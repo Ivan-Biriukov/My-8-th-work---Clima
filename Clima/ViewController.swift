@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate {
     @IBOutlet weak var searchTextField: UITextField!
     
     var weatherManager = WeatherManager()
@@ -16,6 +16,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         //Our TextField report in our class her status (User Interaction)
         searchTextField.delegate = self
+        
+        weatherManager.delegate = self // Set this View Cotroller as a Delegate for our Trigger in WheaterManager^ so this View will triger that method
     }
 
     // Method from our search button
@@ -50,7 +52,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    
+    func didUpdateWeather(weather: WeatherModel){ // Created method thats transfer weahert data from logic up to ViewController
+        print(weather.windSpeed)
+    }
     
     
 
