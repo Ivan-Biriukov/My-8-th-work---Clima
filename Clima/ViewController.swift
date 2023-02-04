@@ -9,6 +9,10 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate {
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var cityNameLabel: UILabel!
+    @IBOutlet weak var windSpeedLabel: UILabel!
+    @IBOutlet weak var weatherConditionImage: UIImageView!
     
     var weatherManager = WeatherManager()
     
@@ -53,8 +57,18 @@ class ViewController: UIViewController, UITextFieldDelegate, WeatherManagerDeleg
     
     
     func didUpdateWeather(weatherManager: WeatherManager, weather: WeatherModel){ // Created method thats transfer weahert data from logic up to ViewController. Modify input with APPLE standarts - so we say who will trigger this method (WeatherManager)
-        print(weather.windSpeed)
+        
+        DispatchQueue.main.async { // Created standart Apple Method for Change UI in main thread (основной поток)
+            self.temperatureLabel.text = weather.temperatureString
+            self.windSpeedLabel.text = weather.windSpeedString
+            self.weatherConditionImage.image = UIImage(systemName: weather.conditionName) // To change Images we should choose systemName property name
+            self.cityNameLabel.text = weather.cityName
+            
+        }
+        
     }
+    
+    
     func didFailWIthError(error: Error) {
         print(error)
     }

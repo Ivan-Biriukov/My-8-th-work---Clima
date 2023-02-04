@@ -62,9 +62,11 @@ struct WeatherManager {
             
             let weather = WeatherModel(conditionId: id, cityName: name, temperature: temp, windSpeed: wind) // Created an object from Weather model which will save all transleted propertyes from API request
             
+            weather.conditionName // call to computed property thats in uotput gives us name of weahter picture to pass it for IBOutlet
+            
             return weather // Becouse we got method with output - we need to return
             
-            weather.conditionName // call to computed property thats in uotput gives us name of weahter picture to pass it for IBOutlet
+            
             
         } catch { // and When he throws an error we can catch that error in block catch
                 print(error)

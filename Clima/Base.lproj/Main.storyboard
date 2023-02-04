@@ -180,7 +180,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cityNameLabel" destination="b64-rQ-m9E" id="K9g-9W-BkN"/>
                         <outlet property="searchTextField" destination="KOq-WS-aaJ" id="gLu-Ot-CMp"/>
+                        <outlet property="temperatureLabel" destination="ewP-Iy-YIL" id="BIS-me-Ofr"/>
+                        <outlet property="weatherConditionImage" destination="zoI-3E-d3F" id="eJ5-2u-xyb"/>
+                        <outlet property="windSpeedLabel" destination="Dqh-G1-kXD" id="bU8-Sq-sU9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
