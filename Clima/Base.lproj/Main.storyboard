@@ -38,6 +38,9 @@
                                                         <color key="tintColor" name="CustomColors"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="" image="location.north" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="currentLocationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cH5-IT-BqQ"/>
+                                                        </connections>
                                                     </button>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="London" textAlignment="center" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="KOq-WS-aaJ">
                                                         <rect key="frame" x="55" y="0.0" width="219" height="40"/>

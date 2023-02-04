@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation // insert an library for getting location
 
 class ViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
@@ -15,15 +16,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var weatherConditionImage: UIImageView!
     
     var weatherManager = WeatherManager()
+    let locationManager = CLLocationManager() // Created an object whic are working for location searching
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //Our TextField report in our class her status (User Interaction)
         searchTextField.delegate = self
+        locationManager.delegate = self // Set this View Cotroller as a Delegate for our Trigger so this View will triger that method
+
+        locationManager.requestWhenInUseAuthorization() // So we asc an user allow to get information about his geoDataposition
         
+        locationManager.requestLocation() // So we now get information about user location. One time delivery method
         weatherManager.delegate = self // Set this View Cotroller as a Delegate for our Trigger in WheaterManager^ so this View will triger that method
     }
 
+    @IBAction func currentLocationPressed(_ sender: UIButton) {
+        locationManager.requestLocation()
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -76,6 +85,21 @@ extension ViewController: WeatherManagerDelegate{ // Create Extension for our Vi
     }
     
     func didFailWIthError(error: Error) {
+        print(error)
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+extension ViewController: CLLocationManagerDelegate{ // use this extention for taking a protocol thats needed by LocationManager to be delegated
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) { // realised the method neded for protocol
+        if let location = locations.last {  // In reason that Input of locations - array we can safly get information about location
+            let lat = location.coordinate.latitude
+            let lon = location.coordinate.longitude
+            weatherManager.fetchWeather(longitude: lon, latitude: lat)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) { // realised the method neded for protocol
         print(error)
     }
 }

@@ -6,6 +6,7 @@
 // File for structure working with URL API and data logick
 
 import Foundation
+import CoreLocation
 
 protocol WeatherManagerDelegate {  // made an protocol to make WeahetManager functional Anonimety so every View (throught self.delegate setting) can make trigger method to update the weather
     func didUpdateWeather(weatherManager: WeatherManager,weather: WeatherModel)
@@ -21,6 +22,10 @@ struct WeatherManager {
         performRequest(with: urlString) // Call the method which do the Networking. Input - our URL link.
     }
     
+    func fetchWeather(longitude: CLLocationDegrees, latitude: CLLocationDegrees){
+        let urlString = "\(weatherURL)&lon=\(longitude)&lat=\(latitude)"
+        performRequest(with: urlString)
+    }
     
     func performRequest(with urlString: String){ // created a method which will do Networking
         //1. Create a url (from basic method URL(string:)
@@ -62,7 +67,7 @@ struct WeatherManager {
             
             let weather = WeatherModel(conditionId: id, cityName: name, temperature: temp, windSpeed: wind) // Created an object from Weather model which will save all transleted propertyes from API request
             
-            weather.conditionName // call to computed property thats in uotput gives us name of weahter picture to pass it for IBOutlet
+//weather.conditionName // call to computed property thats in uotput gives us name of weahter picture to pass it for IBOutlet
             
             return weather // Becouse we got method with output - we need to return
             
