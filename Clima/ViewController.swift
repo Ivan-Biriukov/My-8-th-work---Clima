@@ -52,8 +52,11 @@ class ViewController: UIViewController, UITextFieldDelegate, WeatherManagerDeleg
     }
     
     
-    func didUpdateWeather(weather: WeatherModel){ // Created method thats transfer weahert data from logic up to ViewController
+    func didUpdateWeather(weatherManager: WeatherManager, weather: WeatherModel){ // Created method thats transfer weahert data from logic up to ViewController. Modify input with APPLE standarts - so we say who will trigger this method (WeatherManager)
         print(weather.windSpeed)
+    }
+    func didFailWIthError(error: Error) {
+        print(error)
     }
     
     

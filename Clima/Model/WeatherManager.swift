@@ -8,7 +8,8 @@
 import Foundation
 
 protocol WeatherManagerDelegate {  // made an protocol to make WeahetManager functional Anonimety so every View (throught self.delegate setting) can make trigger method to update the weather
-    func didUpdateWeather(weather: WeatherModel)
+    func didUpdateWeather(weatherManager: WeatherManager,weather: WeatherModel)
+    func didFailWIthError(error: Error) // added method for delegate thats help us dismiss errors from our WeahterManager
 }
 
 struct WeatherManager {
@@ -17,11 +18,11 @@ struct WeatherManager {
     
     func fetchWeather(cityName: String){ // method which adapts our URL adress with user input in textField
         let urlString = "\(weatherURL)&q=\(cityName)"
-        performRequest(urlString: urlString) // Call the method which do the Networking. Input - our URL link.
+        performRequest(with: urlString) // Call the method which do the Networking. Input - our URL link.
     }
     
     
-    func performRequest(urlString: String){ // created a method which will do Networking
+    func performRequest(with urlString: String){ // created a method which will do Networking
         //1. Create a url (from basic method URL(string:)
         if let url = URL(string: urlString){ // cose our url -optional we will unwrap it and do other step when it exist
             
@@ -32,12 +33,13 @@ struct WeatherManager {
             let task = session.dataTask(with: url) { data, response, error in // This step is done from just created session, when we call a standart method .dataTask. First input with: we set to pur if let url value. Second input whanna heve an function, so we need to create it. Becose this method restore back an data -> we save it in let. Ufter know about Closure we dont need more extra create a func for input we made input like a Closure.
                 
                 if error != nil { // Catching errors if they exist we will stop make a code
+                    self.delegate?.didFailWIthError(error: error!)
                     return // just return keywoard means -> exit from this function and do not do it nexts steps.
                 }
                 
                 if let safeData = data{ // unwraping incoming Data? becouse its optional
-                    if let weather = self.parseJSON(weatherData: safeData) { // Call method thats translate to Struck incoming JSON data from openweathermap. set self. before name om method in Closure - its rule
-                        self.delegate?.didUpdateWeather(weather: weather) // set up method to update wheater Data
+                    if let weather = self.parseJSON(safeData) { // Call method thats translate to Struck incoming JSON data from openweathermap. set self. before name om method in Closure - its rule
+                        self.delegate?.didUpdateWeather(weatherManager: self, weather: weather) // set up method to update wheater Data, also sas who will trigger this method (self)
                     }
                 }
 
@@ -48,7 +50,7 @@ struct WeatherManager {
         }
     }
     
-    func parseJSON(weatherData: Data) -> WeatherModel? { // Created method thats will translate JSON into struck data type, as input we set data whic we got from session.dataTask, and return an WeahetModel Optional Object
+    func parseJSON(_ weatherData: Data) -> WeatherModel? { // Created method thats will translate JSON into struck data type, as input we set data whic we got from session.dataTask, and return an WeahetModel Optional Object
         let decoder = JSONDecoder() // created an objest from JSONDecoder() Apply Class to translate incoming data
         do { // in do block {} we are rapping every method that throw an error (every method with keywoard try)
             let decodedData =  try decoder.decode(WeatherData.self, from: weatherData) // Here we are decoding (transleting) our data. 1st parametr - Data Type, second - what data. We should mark this method with keywoard try, becouse he can trhow an error.
