@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate {
+class ViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityNameLabel: UILabel!
@@ -24,12 +24,20 @@ class ViewController: UIViewController, UITextFieldDelegate, WeatherManagerDeleg
         weatherManager.delegate = self // Set this View Cotroller as a Delegate for our Trigger in WheaterManager^ so this View will triger that method
     }
 
-    // Method from our search button
-    @IBAction func searcxhPressed(_ sender: UIButton) {
-        searchTextField.endEditing(true)  //dismiss keyboard
+}
 
-    }
+// MARK: - UITextFieldDelegate
+extension ViewController: UITextFieldDelegate{ // Create Extension for our ViewController Class so we cand delite : UITextFieldDeligate ba class at the top
     
+    // This method we need to check do user fill the TextField
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if searchTextField.text != "" {
+            return true
+        } else {
+            searchTextField.placeholder = "Write name of the City"
+            return false
+        }
+    }
     
     // This method helps us interact with a keyboard button "Go"
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -45,16 +53,15 @@ class ViewController: UIViewController, UITextFieldDelegate, WeatherManagerDeleg
         searchTextField.text = ""
     }
     
-    // This method we need to check do user fill the TextField
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if searchTextField.text != "" {
-            return true
-        } else {
-            searchTextField.placeholder = "Write name of the City"
-            return false
-        }
+    // Method from our search button
+    @IBAction func searcxhPressed(_ sender: UIButton) {
+        searchTextField.endEditing(true)  //dismiss keyboard
+
     }
-    
+}
+
+// MARK: - WeatherManagerDelegate
+extension ViewController: WeatherManagerDelegate{ // Create Extension for our ViewController Class so we cand delite :WeatherManagerDelegate ba class at the top/
     
     func didUpdateWeather(weatherManager: WeatherManager, weather: WeatherModel){ // Created method thats transfer weahert data from logic up to ViewController. Modify input with APPLE standarts - so we say who will trigger this method (WeatherManager)
         
@@ -68,13 +75,8 @@ class ViewController: UIViewController, UITextFieldDelegate, WeatherManagerDeleg
         
     }
     
-    
     func didFailWIthError(error: Error) {
         print(error)
     }
-    
-    
-
 }
-
 
