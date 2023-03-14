@@ -14,7 +14,7 @@ protocol WeatherManagerDelegate {  // made an protocol to make WeahetManager fun
 }
 
 struct WeatherManager {
-    let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=3031c9730cede0714743e59a76763c7e&units=metric"
+    let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=enterAPIID&units=metric"
     var delegate: WeatherManagerDelegate? // made an Handler which can be trigeret by any Class who got it -> so it will run weahterupdate to ViewController
     
     func fetchWeather(cityName: String){ // method which adapts our URL adress with user input in textField
